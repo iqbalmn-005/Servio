@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERVIO Service Providers</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --quriar-orange: #F95C19;
+            --quriar-cream: #FFF1EB;
+            --quriar-navy: #11111D;
+            --white: #FFFFFF;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--quriar-cream);
+            color: var(--quriar-navy);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dashboard-wrapper {
+            background: var(--white);
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 40px;
+        }
+
+        .header-section {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--quriar-cream);
+        }
+
+        .brand-title {
+            color: var(--quriar-orange);
+            font-weight: 800;
+            font-size: 32px;
+            margin: 0;
+        }
+
+        h3 {
+            font-weight: 700;
+            font-size: 18px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        .nav-pills {
+            background: #F7F8FA;
+            padding: 6px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .nav-pills .nav-link {
+            color: #666;
+            font-weight: 600;
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: var(--quriar-orange);
+            color: var(--white);
+        }
+
+        .tab-content {
+            flex: 1 1 auto;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tab-pane {
+            height: 100%;
+        }
+
+        .scroll-box {
+            height: calc(100vh - 270px);
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .request-card {
+            background: var(--white);
+            border: 1px solid #EDF2F7;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .request-card:hover {
+            border-color: var(--quriar-orange);
+            background-color: #fffaf8;
+        }
+
+        .cust-name {
+            font-weight: 700;
+            font-size: 18px;
+            display: block;
+        }
+
+        .serv-name {
+            color: #718096;
+            font-size: 15px;
+            display: block;
+        }
+
+        .btn-action {
+            background-color: var(--quriar-orange);
+            color: white;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .btn-muted {
+            background-color: #6c757d;
+        }
+
+        .empty-state {
+            color: #6c757d;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .status-pill {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-accepted {
+            background: #cfe2ff;
+            color: #084298;
+        }
+
+        .status-verification {
+            background: #ffe5d0;
+            color: #9a3412;
+        }
+
+        .status-completed {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .scroll-box::-webkit-scrollbar { width: 8px; }
+        .scroll-box::-webkit-scrollbar-track { background: var(--quriar-cream); }
+        .scroll-box::-webkit-scrollbar-thumb { background: #CBD5E0; border-radius: 10px; }
+    </style>
+</head>
+
+<body>
+<div class="dashboard-wrapper">
+    <div class="header-section">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 12px;">
+            <h1 class="brand-title">Quriarbox</h1>
+        </div>
+    <div style="display: flex; justify-content: center; align-items: center; position: relative;">       
+        <h3 style="margin: 0;">Provider Management Portal</h3>       
+        <a href="{% url 'logout' %}"><button class="btn-action" style="position: absolute; right: 0;">Logout</button></a>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 12px;">
+        <label style="color: #666; font-size: 14px;">Welcome, {{ provider.Name }}</label>
+    </div>
+    </div>
+    
+    <ul class="nav nav-pills nav-justified" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="pill" href="#new">Incoming Requests ({{ incoming_bookings|length }})</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="pill" href="#pending">Accepted Jobs ({{ active_bookings|length }})</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="pill" href="#completed">Completed Jobs ({{ completed_bookings|length }})</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="new">
+            <div class="scroll-box">
+                {% for booking in incoming_bookings %}
+                <div class="request-card">
+                    <div>
+                        <span class="cust-name">{{ booking.user.Name }}</span>
+                        <span class="serv-name">{{ booking.user.address }}</span>
+                        <span class="serv-name">Time: {{ booking.time }}</span>
+                        <span class="status-pill status-pending">Pending</span>
+                    </div>
+                    <div>
+                        <a href="{% url 'accepted_jobs' booking.id %}"><button class="btn-action">Accept Job</button></a>
+                        <a href="{% url 'reject_job' booking.id %}"><button class="btn-action">Reject Job</button></a>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="empty-state">No incoming requests.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="pending">
+            <div class="scroll-box">
+                {% for booking in active_bookings %}
+                <div class="request-card">
+                    <div>
+                        <span class="cust-name">{{ booking.user.Name }}</span>
+                        <span class="serv-name">{{ booking.user.address }}</span>
+                        <span class="serv-name">Time: {{ booking.time }}</span>
+                        {% if booking.status == "accepted" or booking.status == "Accepted" %}
+                        <span class="status-pill status-accepted">Accepted</span>
+                        {% else %}
+                        <span class="status-pill status-verification">Waiting Verification</span>
+                        {% endif %}
+                    </div>
+                    <div>
+                        {% if booking.status == "accepted" %}
+                        <a href="{% url 'complete_job_request' booking.id %}"><button class="btn-action">Request Completion</button></a>
+                        {% else %}
+                        <button class="btn-action btn-muted" disabled>Waiting User Verification</button>
+                        {% endif %}
+                    </div>
+                </div>
+                {% empty %}
+                <p class="empty-state">No accepted jobs right now.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="completed">
+            <div class="scroll-box">
+                {% for booking in completed_bookings %}
+                <div class="request-card">
+                    <div>
+                        <span class="cust-name">{{ booking.user.Name }}</span>
+                        <span class="serv-name">{{ booking.user.address }}</span>
+                        <span class="serv-name">Time: {{ booking.time }}</span>
+                        <span class="status-pill status-completed">Completed</span>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="empty-state">No completed jobs yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

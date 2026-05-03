@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Booking Confirmed</title>
+
+<style>
+body{
+font-family:Arial, sans-serif;
+background:#FFF1EB;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.card{
+background:white;
+padding:40px;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+text-align:center;
+max-width:450px;
+}
+
+h1{
+color:#F95C19;
+margin-bottom:15px;
+}
+
+p{
+color:#555;
+font-size:16px;
+}
+
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:12px 20px;
+background:#F95C19;
+color:white;
+text-decoration:none;
+border-radius:6px;
+font-weight:bold;
+}
+
+.btn:hover{
+background:#d84a12;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+<h1>Booking Confirmed ✅</h1>
+<p>Your booking request has been sent successfully.</p>
+<p>Waiting for the provider to accept your request.</p>
+
+<a href="/logined/" class="btn">Back to Home</a>
+<a href="{% url 'booking_status' %}" class="btn" style="margin-left:8px;">View Booking Status</a>
+</div>
+
+</body>
+</html>

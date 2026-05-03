@@ -1,0 +1,269 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SERVIO Service Providers</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicons/favicon-16x16.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicons/favicon.ico' %}">
+    <link rel="manifest" href="{% static 'assets/img/favicons/manifest.json' %}">
+    <meta name="msapplication-TileImage" content="{% static 'assets/img/favicons/mstile-150x150.png' %}">
+    <meta name="theme-color" content="#ffffff">
+
+    <link href="{% static 'assets/css/theme.css' %}" rel="stylesheet" />
+
+  </head>
+
+  <body>
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block" data-navbar-on-scroll="data-navbar-on-scroll" style="margin-top: 20px;">
+        <div class="container"><a class="navbar-brand" href="index.html"><img src="{% static 'assets/img/gallery/new-logo1.png' %}" height="50" alt="logo" /></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
+          <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
+              <li class="nav-item px-2"><a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="#services">Our Services</a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="#about">About</a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="{% url 'booking_status' %}">My Bookings</a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="{% url 'complete_notification' %}">Notifications</a></li>
+            </ul>
+            <div class="dropdown d-none d-lg-block">
+              <button class="btn bg-soft-warning ms-2" id="dropdownMenuButton1" type="submit" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-search text-warning"></i></button>
+            </div>
+            <a class="btn btn-primary order-1 order-lg-0 ms-lg-3" href="{% url 'user_logout' %}">logout</a>
+
+          </div>
+        </div>
+      </nav>
+      <section class="py-xxl-10 pb-0" id="home">
+        <div class="bg-holder bg-size" style="background-image:url(assets/img/gallery/hero-header-bg.png);background-position:top center;background-size:cover;">
+        </div>
+        <!--/.bg-holder-->
+
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-5 col-xl-6 col-xxl-7 order-0 order-md-1 text-end"><img class="pt-7 pt-md-0 w-100" src="{% static 'assets/img/illustrations/hero.png' %}" alt="hero-header" /></div>
+            <div class="col-md-75 col-xl-6 col-xxl-5 text-md-start text-center py-8">
+              <h1 class="fw-normal fs-6 fs-xxl-7">Welcome To Best </h1>
+              <h1 class="fw-bolder fs-6 fs-xxl-7 mb-2">Technical service providers</h1>
+              <p class="fs-1 mb-5">We deliver our services at<br />your home in a reasonable time. </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section class="py-7" id="services" container-xl="container-xl">
+
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-5 text-center mb-3">
+              <h5 class="text-danger">SERVICES</h5>
+              <h2>Our services for you</h2>
+            </div>
+          </div>
+          <div class="row h-100 justify-content-center">
+            <div class="col-md-4 pt-4 px-md-2 px-lg-3">
+              <div class="card h-100 px-lg-5 card-span">
+                <div class="card-body d-flex flex-column justify-content-around">
+                  <div class="text-center pt-5"><img class="img-fluid" src="{% static 'assets/img/icons/services-1.svg' %}" alt="..." />
+                    <h5 class="my-4">Plumbing</h5>
+                  </div>
+                  <p>It helps improve service efficiency, communication, and customer satisfaction through a centralized management system.</p>
+                  <div class="text-center my-5">
+                    <div class="d-grid">
+                     <a href="{% url 'plumber' 'plumbing' %}" ><button class="btn btn-outline-danger" type="submit">Book slot </button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 pt-4 px-md-2 px-lg-3">
+              <div class="card h-100 px-lg-5 card-span">
+                <div class="card-body d-flex flex-column justify-content-around">
+                  <div class="text-center pt-5"><img class="img-fluid" src="{% static 'assets/img/icons/services-2.svg' %}" alt="..." />
+                    <h5 class="my-4">Wiring</h5>
+                  </div>
+                  <p>It connects customers with skilled service providers, making it easier to book and track service requests online.</p>
+                  <div class="text-center my-5">
+                    <div class="d-grid">
+                       <a href="{% url 'wiring' 'wiring' %}" ><button class="btn btn-outline-danger" type="submit">Book slot </button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 pt-4 px-md-2 px-lg-3">
+              <div class="card h-100 px-lg-5 card-span">
+                <div class="card-body d-flex flex-column justify-content-around">
+                  <div class="text-center pt-5"><img class="img-fluid" src="{% static 'assets/img/icons/services-3.svg' %}" alt="..." />
+                    <h5 class="my-4">Ac Mechanic</h5>
+                  </div>
+                  <p>The system simplifies service booking, scheduling, and management using a user-friendly digital interface.</p>
+                  <div class="text-center my-5">
+                    <div class="d-grid">
+                       <a href="{% url 'Ac' 'acmech' %}" ><button class="btn btn-outline-danger" type="submit">Book slot </button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+
+      <section class="py-7" id="about">
+
+        <div class="container-fluid">
+          <div class="row flex-center">
+            <div class="bg-holder bg-size" style="background-image:url(assets/img/gallery/quote.png);background-position:top;background-size:auto;margin-left:-270px;margin-top:-45px;">
+            </div>
+            <!--/.bg-holder-->
+
+            <div class="col-md-8 col-lg-5 text-center">
+              <h5 class="text-danger">ABOUT US</h5>
+
+            </div>
+          </div>
+          <div class="carousel slide pt-6" id="carouselExampleDark" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="10000">
+                <div class="row h-100">
+                  <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card h-100 card-span p-3">
+                      <div class="card-body">
+                        <h5 class="mb-0 text-primary" >Best Quality Services</h5>
+                        <p class="card-text pt-3">Our Technical Service Provider System connects you with trusted professionals whenever you need help. From plumbing and wiring to AC repair, finding the right expert is simple and quick. Fast, reliable, and easy to use, the platform ensures quality service every time. </p>
+                        <div class="d-xl-flex justify-content-between align-items-center">
+                          <div class="d-flex align-items-center mb-3"><i class="fas fa-star text-primary me-1"></i><i class="fas fa-star text-primary me-1"></i><i class="fas fa-star text-primary me-1"></i><i class="fas fa-star text-primary me-1"></i><i class="fas fa-star text-primary me-1"></i></div>
+                          <div class="d-flex align-items-center">
+                            <div class="flex-1 ms-3">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card h-100 card-span p-3">
+                      <div class="card-body">
+                        <h5 class="mb-0 text-primary">Trusted Service Center</h5>
+                        <p class="card-text pt-3">We connect you with trusted and verified service professionals you can rely on. Our pricing is fair, transparent, and designed to fit your budget. With 24×7 customer support, we’re always here when you need us most.</p>
+                        <div class="d-xl-flex justify-content-between align-items-center">
+                          <div class="d-flex align-items-center mb-3"><i class="fas fa-star text-primary me-1"></i><i class="fas fa-star text-primary me-1"></i><i class="fas fa-star text-primary me-1"></i><i class="fas fa-star text-primary me-1"></i><i class="fas fa-star text-primary me-1"></i></div>
+                          <div class="d-flex align-items-center">
+                            <div class="flex-1 ms-3"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="card h-100 card-span p-3">
+                      <div class="card-body">
+                        <h5 class="mb-0 text-primary">Fantastic service!</h5>
+                        <p class="card-text pt-3">We provide trusted and verified service professionals for every need.Our prices are fair, transparent, and budget-friendly.With 24×7 support, help is always available whenever you need it.</p>
+                        <div class="d-xl-flex justify-content-between align-items-center">
+                          <div class="d-flex align-items-center mb-3"><i class="fas fa-star text-primary me-1"></i><i class="fas fa-star text-primary me-1"></i><i class="fas fa-star text-primary me-1"></i><i class="fas fa-star text-primary me-1"></i><i class="fas fa-star text-primary me-1"></i></div>
+                          <div class="d-flex align-items-center">
+                            <div class="flex-1 ms-3">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                  <div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+      
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section class="bg-900 pb-0 pt-5">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-sm-12 col-lg-6 mb-4 order-0 order-sm-0"><a class="text-decoration-none" href="#"><img src="{% static 'assets/img/gallery/new-logo1.png' %}" height="50" alt="" /></a>
+              <p class="text-500 my-4">The most trusted Courier<br />company in your area.</p>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2 mb-3 order-2 order-sm-1">
+              <h5 class="lh-lg fw-bold mb-4 text-light font-sans-serif">Other links </h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-500" href="#!">Blogs</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Movers website</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Traffic Update</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
+              <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Services</h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-500" href="#!">Corporate goods</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Artworks</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Documents</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
+              <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif"> Customer Care</h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-500" href="#!">About Us</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Contact US</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Get Update</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+
+
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="vendors/@popperjs/popper.min.js"></script>
+    <script src="vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="vendors/is/is.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="vendors/fontawesome/all.min.js"></script>
+    <script src="{% static 'assets/js/theme.js' %}"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  </body>
+
+</html>

@@ -1,0 +1,232 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="CryptoDash admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
+    <meta name="keywords" content="admin template, CryptoDash Cryptocurrency Dashboard Template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
+    <meta name="author" content="ThemeSelection">
+    <title>Transactions - CryptoDash - Free Cryptocurrency Dashboard Template + Bitcoin Dashboard</title>
+    <link rel="apple-touch-icon" href="{% static 'assets/images/ico/apple-icon-120.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/ico/favicon.ico' %}">
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i|Comfortaa:300,400,500,700" rel="stylesheet">
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors.css' %}">
+    <!-- END VENDOR CSS-->
+    <!-- BEGIN MODERN CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/app.css' %}">
+    <!-- END MODERN CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/core/menu/menu-types/vertical-compact-menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/vendors/css/cryptocoins/cryptocoins.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/pages/transactions.css' %}">
+    <!-- END Page Level CSS-->
+    <!-- BEGIN Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+    <!-- END Custom CSS-->
+  </head>
+  <body class="vertical-layout vertical-compact-menu 2-columns   menu-expanded fixed-navbar" data-open="click" data-menu="vertical-compact-menu" data-col="2-columns">
+
+    <!-- fixed-top-->
+    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-light navbar-bg-color">
+      <div class="navbar-wrapper">
+        <div class="navbar-header d-md-none">
+          <ul class="nav navbar-nav flex-row">
+            <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
+            <li class="nav-item d-md-none"><a class="navbar-brand" href="index.html"><img class="brand-logo d-none d-md-block" alt="CryptoDash admin logo" src="{% static 'assets/img/logo/logo.png' %}"><img class="brand-logo d-sm-block d-md-none" alt="CryptoDash admin logo sm" src="{% static 'assets/img/logo/logo-sm.png' %}"></a></li>
+            <li class="nav-item d-md-none"><a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="la la-ellipsis-v">   </i></a></li>
+          </ul>
+        </div>
+        <div class="navbar-container">
+          <div class="collapse navbar-collapse" id="navbar-mobile">
+            <ul class="nav navbar-nav mr-auto float-left">
+              <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu">         </i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+
+
+    <div class="main-menu menu-fixed menu-dark menu-bg-default rounded menu-accordion menu-shadow">
+      <div class="main-menu-content"><a class="navigation-brand d-none d-md-block d-lg-block d-xl-block" href="{% url 'admin_index' %}"><img class="brand-logo" alt="CryptoDash admin logo" src="{% static 'assets/img/logo/logo.png' %}"/></a>
+        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+          <li class=" nav-item"><a href="{% url 'admin_index' %}"><i class="icon-grid"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
+          </li>
+          <li class="active"><a href="{% url 'recent_bookings' %}"><i class="icon-shuffle"></i><span class="menu-title" data-i18n="">Recent Booking</span></a>
+          </li>
+          <li class="nav-item"><a href="{% url 'pending_providers' %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+            <span class="menu-title" data-i18n="">Request</span></a>
+          </li>
+          <li class="nav-item"><a href="{% url 'approved_providers' %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span class="menu-title" data-i18n="">Provider Details</span></a>
+          </li>
+         <li class=" nav-item"><a href="{% url 'admin_logout' %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+              <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+            </svg>
+            <span class="menu-title" data-i18n="">Logout</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="app-content content">
+      <div class="content-wrapper">
+        <div class="content-header row">
+          <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+            <h3 class="content-header-title mb-0 d-inline-block">Recent Bookings</h3>
+            <div class="row breadcrumbs-top d-inline-block">
+              <div class="breadcrumb-wrapper col-12">
+              </div>
+            </div>
+          </div>
+          <div class="content-header-right col-md-4 col-12 d-none d-md-inline-block">
+          </div>
+        </div>
+        <div class="content-body">
+<div id="transactions">
+    <div class="transactions-table-th d-none d-md-block">
+        <div class="col-12">
+            <div class="row px-1">
+                <div class="col-md-3 col-12 py-1">
+                    <p class="mb-0">Provider Name</p>
+                </div>
+                <div class="col-md-2 col-12 py-1">
+                    <p class="mb-0">Service Type</p>
+                </div>
+                <div class="col-md-2 col-12 py-1">
+                    <p class="mb-0">Date</p>
+                </div>
+                <div class="col-md-2 col-12 py-1">
+                    <p class="mb-0">Time</p>
+                </div>
+                <div class="col-md-3 col-12 py-1">
+                    <p class="mb-0">Status</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="transactions-table-tbody">
+        {% for booking in page_obj %}
+        <section class="card pull-up">
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-md-3 col-12 py-1">
+                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Provider: </span>{{ booking.provider.Name }}</p>
+                            </div>
+                            <div class="col-md-2 col-12 py-1">
+                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Service: </span>{{ booking.provider.get_service_display|default:booking.service|title }}</p>
+                            </div>
+                            <div class="col-md-2 col-12 py-1">
+                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Date: </span>{{ booking.date }}</p>
+                            </div>
+                            <div class="col-md-2 col-12 py-1">
+                                <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700">Time: </span>{{ booking.time }}</p>
+                            </div>
+                            <div class="col-md-3 col-12 py-1">
+                                <span class="d-inline-block d-md-none text-bold-700">Status: </span>
+                                {% if booking.status == 'pending' %}
+                                    <a href="#" class="mb-0 btn-sm btn btn-outline-danger round">Pending</a>
+                                {% elif booking.status == 'accepted' %}
+                                    <a href="#" class="mb-0 btn-sm btn btn-outline-warning round">Accepted</a>
+                                {% elif booking.status == 'completed' %}
+                                    <a href="#" class="mb-0 btn-sm btn btn-outline-success round">Completed</a>
+                                {% elif booking.status == 'cancelled' %}
+                                    <a href="#" class="mb-0 btn-sm btn btn-outline-secondary round">Cancelled</a>
+                                {% else %}
+                                    <a href="#" class="mb-0 btn-sm btn btn-outline-info round">{{ booking.status|title }}</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% empty %}
+        <section class="card pull-up">
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="col-12 text-center py-2">
+                        <p class="mb-0">No recent bookings found.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endfor %}
+
+        <!-- Pagination Controls -->
+        <nav aria-label="Page navigation example" class="mt-2">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Next" tabindex="-1" aria-disabled="true">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+        </div>
+      </div>
+    </div>
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+
+
+
+    <!-- BEGIN VENDOR JS-->
+    <script src="{% static 'assets/vendors/js/vendors.min.js' %}" type="text/javascript"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN MODERN JS-->
+    <script src="{% static 'assets/js/core/app-menu.js' %}" type="text/javascript"></script>
+    <script src="{% static 'assets/js/core/app.js' %}" type="text/javascript"></script>
+    <!-- END MODERN JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <!-- END PAGE LEVEL JS-->
+  </body>
+</html>

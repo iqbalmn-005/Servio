@@ -1,0 +1,281 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Provider Details | Quriarbox</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="{% static 'assets/css/theme.css' %}" rel="stylesheet">
+
+<style>
+
+:root{
+--brand-orange:#F95C19;
+--bg-cream:#FFF1EB;
+--text-dark:#222124;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:var(--bg-cream);
+min-height:100vh;
+display:flex;
+flex-direction:column;
+}
+
+/* MAIN SECTION */
+
+.main{
+flex:1;
+width:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:120px 40px 60px;
+}
+
+/* PROVIDER CARD */
+
+.container-box{
+width:100%;
+max-width:1100px;
+background:white;
+padding:60px;
+border-radius:18px;
+box-shadow:0 10px 30px rgba(0,0,0,0.06);
+}
+
+/* PROVIDER HEADER */
+
+.provider-header{
+display:flex;
+align-items:center;
+gap:30px;
+margin-bottom:35px;
+}
+
+.provider-img{
+width:110px;
+height:110px;
+border-radius:50%;
+background:#ddd;
+}
+
+.provider-info h2{
+font-size:28px;
+margin-bottom:8px;
+color:var(--text-dark);
+}
+
+.provider-info p{
+color:#555;
+font-size:15px;
+}
+
+/* SCHEDULE */
+
+.schedule h3{
+margin-bottom:25px;
+font-size:20px;
+color:var(--text-dark);
+}
+
+.time-slots{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.time-btn{
+padding:14px;
+border:none;
+background:var(--brand-orange);
+color:white;
+border-radius:8px;
+cursor:pointer;
+font-weight:600;
+font-size:14px;
+transition:0.2s;
+}
+.time-checkbox{
+display:none;
+}
+
+.time-label{
+display:block;
+padding:14px;
+background:var(--brand-orange);
+color:white;
+border-radius:8px;
+cursor:pointer;
+font-weight:600;
+font-size:14px;
+text-align:center;
+transition:0.2s;
+}
+
+.time-label:hover{
+background:#d84a12;
+transform:scale(1.03);
+}
+
+.time-checkbox:checked + .time-label{
+background:#222124;
+}
+
+.time-btn:hover{
+background:#d84a12;
+transform:scale(1.03);
+}
+
+/* FOOTER */
+
+footer{
+background:#111;
+color:#bbb;
+text-align:center;
+padding:22px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
+<div class="container">
+
+<a class="navbar-brand" href="{% url 'index' %}">
+<img src="{% static 'assets/img/gallery/logo.png' %}" height="45">
+</a>
+
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+<ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
+<li class="nav-item px-2"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+<li class="nav-item px-2"><a class="nav-link" href="#">Our Services</a></li>
+<li class="nav-item px-2"><a class="nav-link" href="#">About</a></li>
+</ul>
+
+<a class="btn btn-primary ms-lg-3" href="{% url 'user_logout' %}">Logout</a>
+
+</div>
+</div>
+</nav>
+
+
+<!-- MAIN CONTENT -->
+
+<div class="main">
+
+<div class="container-box">
+
+<div class="provider-header">
+
+<div class="provider-info">
+<h2>{{ provider.Name }}</h2>
+<p>{{ provider.service }}</p>
+<p>Phone: {{ provider.phone_number }}</p>
+</div>
+
+</div>
+
+<div class="schedule">
+
+<h3>Available Time Slots</h3>
+{% if error %}
+<div style="background:#ffe3e3;color:#9b1c1c;padding:10px 14px;border-radius:8px;margin-bottom:16px;">
+{{ error }}
+</div>
+{% endif %}
+<form action="{% url 'booking' provider.id %}" method="POST">
+{% csrf_token %}
+
+<div class="time-slots">
+
+<input type="radio" name="time_slot" value="10:00" id="t1" class="time-checkbox">
+<label for="t1" class="time-label">10:00 AM - 11:00 AM</label>
+
+<input type="radio" name="time_slot" value="11:00" id="t2" class="time-checkbox">
+<label for="t2" class="time-label">11:00 AM - 12:00 PM</label>
+
+<input type="radio" name="time_slot" value="13:00" id="t3" class="time-checkbox">
+<label for="t3" class="time-label">1:00 PM - 2:30 PM</label>
+
+<input type="radio" name="time_slot" value="14:30" id="t4" class="time-checkbox">
+<label for="t4" class="time-label">2:30 PM - 4:00 PM</label>
+
+</div>
+
+<div class="text-center mt-5">
+<button type="submit" class="time-btn">Confirm Booking</button>
+</div>
+
+</form>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<section class="bg-900 pb-0 pt-5">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-sm-12 col-lg-6 mb-4 order-0 order-sm-0"><a class="text-decoration-none" href="#"><img src="{% static 'assets/img/gallery/footer-logo.png' %}" height="51" alt="" /></a>
+              <p class="text-500 my-4">The most trusted Courier<br />company in your area.</p>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2 mb-3 order-2 order-sm-1">
+              <h5 class="lh-lg fw-bold mb-4 text-light font-sans-serif">Other links </h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-500" href="#!">Blogs</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Movers website</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Traffic Update</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
+              <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Services</h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-500" href="#!">Corporate goods</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Artworks</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Documents</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
+              <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif"> Customer Care</h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-500" href="#!">About Us</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Contact US</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Get Update</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+
+</body>
+</html>

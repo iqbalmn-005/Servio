@@ -1,0 +1,213 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SERVIO Service Providers</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SERVIO Service Providers</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicons/favicon-16x16.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicons/favicon.ico' %}">
+    <link rel="manifest" href="{% static 'assets/img/favicons/manifest.json' %}">
+    <meta name="msapplication-TileImage" content="{% static 'assets/img/favicons/mstile-150x150.png' %}">
+    <meta name="theme-color" content="#ffffff">
+
+    <link href="{% static 'assets/css/theme.css' %}" rel="stylesheet" />
+<style>
+:root {
+    --brand-orange: #F95C19;
+    --bg-cream: #FFF1EB;
+    --text-dark: #222124;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-cream);
+}
+
+/* FULL WIDTH CONTAINER */
+
+.provider-card {
+    background: #ffffff;
+    padding: 40px;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 100px;   /* pushes page below navbar */
+}
+.logo {
+    color: var(--brand-orange);
+    font-size: 26px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+h2 {
+    text-align: center;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+}
+
+/* TABLE */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+th {
+    background: var(--brand-orange);
+    color: white;
+    padding: 14px;
+    text-align: left;
+}
+
+td {
+    padding: 14px;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+tr:hover {
+    background: #FAFAFA;
+}
+
+/* BOOK BUTTON */
+
+.btn-book {
+    background: var(--brand-orange);
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-book:hover {
+    background: #d84a12;
+}
+</style>
+
+</head>
+
+<body>
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block" data-navbar-on-scroll="data-navbar-on-scroll" style="margin-top: 20px;">
+        <div class="container"><a class="navbar-brand" href="index.html"><img src="{% static 'assets/img/gallery/new-logo1.png' %}" height="50" alt="logo" /></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
+          <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
+              <li class="nav-item px-2"><a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="#services">Our Services</a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="#about">About</a></li>
+            </ul>
+            <div class="dropdown d-none d-lg-block">
+              <button class="btn bg-soft-warning ms-2" id="dropdownMenuButton1" type="submit" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-search text-warning"></i></button>
+              <div class="dropdown-menu dropdown-menu-lg-end p-0 rounded" aria-labelledby="dropdownMenuButton1" style="top:55px">
+                <form>
+                  <input class="form-control border-200" type="search" placeholder="Search" aria-label="Search" style="background:#FDF1DF;" />
+                </form>
+              </div>
+            </div>
+            <a class="btn btn-primary order-1 order-lg-0 ms-lg-3" href="{% url 'user_login' %}">Login</a>
+            <a class="btn btn-primary order-1 order-lg-0 ms-lg-3" href="{% url 'provider_login' %}">Provider</a>
+          </div>
+        </div>
+      </nav>
+
+<div class="provider-card" >
+
+<h2>{{ service|title }} </h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Photo</th>
+<th>Name</th>
+<th>Rating</th>
+<th>Phone Number</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for provider1 in providers %}
+<tr>
+<td>
+{% if provider1.electrician.photo.name %}
+<img src="{{ provider1.electrician.photo.url }}" alt="Photo" width="50" height="50" style="border-radius: 50%; object-fit: cover;">
+{% endif %}
+</td>
+<td>{{ provider1.electrician.Name }}</td>
+<td>
+{% if provider1.avg_rating %}
+<span style="color:#f59e0b;">&#9733;</span> {{ provider1.avg_rating|floatformat:1 }} / 5
+{% else %}
+<span class="text-muted">No ratings yet</span>
+{% endif %}
+</td>
+<td>{{ provider1.electrician.phone_number }}</td>
+<td>
+<a href="{% url 'single_provider' provider1.electrician.id service %}">
+<button class="btn-book">Book</button>
+</a>
+</td>
+</tr>
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+      <section class="bg-900 pb-0 pt-5">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-sm-12 col-lg-6 mb-4 order-0 order-sm-0"><a class="text-decoration-none" href="#"><img src="{% static 'assets/img/gallery/new-logo1.png' %}" height="50" alt="" /></a>
+              <p class="text-500 my-4">The most trusted service<br />Providers</p>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2 mb-3 order-2 order-sm-1">
+              <h5 class="lh-lg fw-bold mb-4 text-light font-sans-serif">Other links </h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-500" href="#!">Blogs</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Movers website</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Traffic Update</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
+              <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">Services</h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-500" href="#!">Corporate goods</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Artworks</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Documents</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
+              <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif"> Customer Care</h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-500" href="#!">About Us</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Contact US</a></li>
+                <li class="lh-lg"><a class="text-500" href="#!">Get Update</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+</body>
+</html>
