@@ -48,14 +48,14 @@
         </div>
       </nav>
       <section class="py-xxl-10 pb-0" id="home">
-        <div class="bg-holder bg-size" style="background-image:url(assets/img/gallery/hero-header-bg.png);background-position:top center;background-size:cover;">
+        <div class="bg-holder bg-size" style="background-image:url({% static 'assets/img/gallery/hero-header-bg.png' %});background-position:top center;background-size:cover;">
         </div>
         <!--/.bg-holder-->
 
         <div class="container">
           <div class="row align-items-center">
             <div class="col-md-5 col-xl-6 col-xxl-7 order-0 order-md-1 text-end"><img class="pt-7 pt-md-0 w-100" src="{% static 'assets/img/illustrations/interface.png' %}" alt="hero-header" /></div>
-            <div class="col-md-75 col-xl-6 col-xxl-5 text-md-start text-center py-8">
+            <div class="col-md-7 col-xl-6 col-xxl-5 text-md-start text-center py-8">
               <h1 class="fw-normal fs-6 fs-xxl-7">Welcome To Best </h1>
               <h1 class="fw-bolder fs-6 fs-xxl-7 mb-2">Technical service providers</h1>
               <p class="fs-1 mb-5">We deliver our services at<br />your home in a reasonable time. </p>
@@ -135,7 +135,7 @@
 
         <div class="container-fluid">
           <div class="row flex-center">
-            <div class="bg-holder bg-size" style="background-image:url(assets/img/gallery/quote.png);background-position:top;background-size:auto;margin-left:-270px;margin-top:-45px;">
+            <div class="bg-holder bg-size" style="background-image:url({% static 'assets/img/gallery/quote.png' %});background-position:top;background-size:auto;margin-left:-270px;margin-top:-45px;">
             </div>
             <!--/.bg-holder-->
 
@@ -262,11 +262,11 @@
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
-    <script src="vendors/@popperjs/popper.min.js"></script>
-    <script src="vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="vendors/is/is.min.js"></script>
+    <script src="{% static 'vendors/@popperjs/popper.min.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/is/is.min.js' %}"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-    <script src="vendors/fontawesome/all.min.js"></script>
+    <script src="{% static 'vendors/fontawesome/all.min.js' %}"></script>
     <script src="{% static 'assets/js/theme.js' %}"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">

@@ -4,6 +4,6 @@ db.sqlite3
 media/
 .vscode/
 .env
-static/assets/
+# static/assets/
 # (Optional) You might want to include static/assets if they are third-party, but I'll leave them for now unless they are too big.
 # Based on git status, many static files are untracked.
