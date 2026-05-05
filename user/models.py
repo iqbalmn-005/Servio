@@ -1,13 +1,18 @@
 from django.db import models
 from django.utils import timezone
 from provider import models as provider_models
+from django.core.validators import RegexValidator
 
 # Create your models here.
 
 
 class User(models.Model):
     Name = models.CharField(max_length=30)
-    phone_number = models.IntegerField(null=True)
+    phone_number = models.CharField(
+        max_length=15,
+        null=True,
+        validators=[RegexValidator(r'^\d{10,15}$', "Phone number must be between 10 and 15 digits.")]
+    )
     address = models.TextField(max_length=100)
     email = models.EmailField(max_length=50, null=True)
     password = models.CharField()
