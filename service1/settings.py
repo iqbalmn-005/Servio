@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'service',
         'USER': 'postgres',
         'PASSWORD': 'ikku05',
-        'HOST': 'localhost',
+        'HOST': 'ep-cool-name.ap-south-1.aws.neon.tech',
         'PORT': '5432',
     }
 }
