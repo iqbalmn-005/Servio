@@ -10,9 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
-from PIL.TiffImagePlugin import Y_RESOLUTION
-from pathlib import Path
 import os
+import dj_database_url
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,18 +79,18 @@ WSGI_APPLICATION = 'service1.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'neondb',
-        'USER': 'neondb_owner',
-        'PASSWORD': 'npg_m0XwEy9PuWKS',
-        'HOST': 'ep-dawn-art-amv5wkki-pooler.c-5.us-east-1.aws.neon.tech',
-        'PORT': '5432',
-        'OPTIONS': {
-            'sslmode': 'require',
-        },
-    }
+    'default': dj_database_url.config(
+        # Replace with your actual connection string if you want to test locally
+        default=os.environ.get('DATABASE_URL', 'postgresql://neondb_owner:npg_m0XwEy9PuWKS@ep-dawn-art-amv5wkki-pooler.c-5.us-east-1.aws.neon.tech/neondb?sslmode=require'),
+        conn_max_age=600,
+        ssl_require=True,
+    )
 }
+
+# Ensure OPTIONS is set for SSL if dj_database_url didn't handle it fully
+if 'OPTIONS' not in DATABASES['default']:
+    DATABASES['default']['OPTIONS'] = {}
+DATABASES['default']['OPTIONS']['sslmode'] = 'require'
 
 
 # Password validation
