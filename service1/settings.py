@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+from PIL.TiffImagePlugin import Y_RESOLUTION
 from pathlib import Path
 import os
 
@@ -80,11 +81,14 @@ WSGI_APPLICATION = 'service1.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'service',
-        'USER': 'postgres',
-        'PASSWORD': 'ikku05',
-        'HOST': 'ep-cool-name.ap-south-1.aws.neon.tech',
+        'NAME': 'neondb',
+        'USER': 'neondb_owner',
+        'PASSWORD': 'npg_m0XwEy9PuWKS',
+        'HOST': 'ep-dawn-art-amv5wkki-pooler.c-5.us-east-1.aws.neon.tech',
         'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
 
