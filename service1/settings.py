@@ -27,7 +27,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-q&lb^=a2!_z!ev9nt94sq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1', 'servio.vercel.app', 'servio-orcin.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1', 'servio-orcin.vercel.app']
+
+CSRF_TRUSTED_ORIGINS = ['https://*.vercel.app', 'https://servio-orcin.vercel.app']
 
 
 # Application definition
@@ -125,12 +127,8 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.0/howto/static-files/
-
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static"
-]
+STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STORAGES = {
@@ -144,6 +142,8 @@ STORAGES = {
 
 WHITENOISE_MANIFEST_STRICT = False
 
-
+# Media files (User-uploaded content)
+# NOTE: FileSystemStorage is read-only on Vercel. 
+# For persistent uploads, use Cloudinary or AWS S3.
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
