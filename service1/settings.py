@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 import os
+import cloudinary
 import dj_database_url
 from pathlib import Path
 
@@ -27,9 +28,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-q&lb^=a2!_z!ev9nt94sq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1', 'servio-orcin.vercel.app']
+ALLOWED_HOSTS = [".vercel.app", "servio-orcin.vercel.app"]
 
-CSRF_TRUSTED_ORIGINS = ['https://*.vercel.app', 'https://servio-orcin.vercel.app']
+CSRF_TRUSTED_ORIGINS = [
+    "https://servio-orcin.vercel.app",
+    "https://*.vercel.app",
+]
 
 
 # Application definition
@@ -138,21 +142,20 @@ STORAGES = {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
 
 WHITENOISE_MANIFEST_STRICT = False
 
 # Media files (User-uploaded content)
-# Using Cloudinary for persistent storage on Vercel
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
-}
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
-MEDIA_URL = '/media/'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-# MEDIA_ROOT is not strictly needed for Cloudinary but good to keep for compatibility
-MEDIA_ROOT = BASE_DIR / 'media'
+# Cloudinary configuration
+cloudinary.config(
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
+    secure=True,
+)
