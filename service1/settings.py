@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-q&lb^=a2!_z!ev9nt94sqtvi#!f!&zvaz$qffo703qo6_chcm5')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = False
 
-ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1', 'servio.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1', 'servio.vercel.app', 'servio-orcin.vercel.app']
 
 
 # Application definition
@@ -145,5 +145,5 @@ STORAGES = {
 WHITENOISE_MANIFEST_STRICT = False
 
 
-MEDIA_URL='/media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
