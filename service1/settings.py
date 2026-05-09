@@ -35,6 +35,7 @@ CSRF_TRUSTED_ORIGINS = ['https://*.vercel.app', 'https://servio-orcin.vercel.app
 # Application definition
 
 INSTALLED_APPS = [
+    'cloudinary_storage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'provider',
     'user',
     'services',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -133,7 +135,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
@@ -143,7 +145,14 @@ STORAGES = {
 WHITENOISE_MANIFEST_STRICT = False
 
 # Media files (User-uploaded content)
-# NOTE: FileSystemStorage is read-only on Vercel. 
-# For persistent uploads, use Cloudinary or AWS S3.
+# Using Cloudinary for persistent storage on Vercel
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+}
+
 MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# MEDIA_ROOT is not strictly needed for Cloudinary but good to keep for compatibility
 MEDIA_ROOT = BASE_DIR / 'media'
