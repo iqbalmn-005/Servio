@@ -28,6 +28,35 @@
         .review-form-card { background: #fffbf0; border: 1px solid #f59e0b22; border-radius: 12px; padding: 15px; margin-top: 15px; }
         .stars-display .fa-star { color: #f59e0b; }
         .stars-display .fa-star.empty { color: #ddd; }
+
+        @media (max-width: 576px) {
+            .page-wrap {
+                margin: 20px auto;
+            }
+            .panel {
+                padding: 16px;
+                border-radius: 12px;
+            }
+            h2 {
+                font-size: 22px;
+            }
+            h4 {
+                font-size: 18px;
+            }
+            .star-rating label {
+                font-size: 1.5rem;
+            }
+            .review-form-card .d-flex {
+                flex-direction: column;
+                gap: 8px !important;
+            }
+            .review-form-card .d-flex > button,
+            .review-form-card .d-flex > a {
+                width: 100%;
+                text-align: center;
+                margin: 0;
+            }
+        }
     </style>
 </head>
 <body>

@@ -38,64 +38,147 @@ body {
 
 .provider-card {
     background: #ffffff;
-    padding: 40px;
+    padding: 60px 40px;
     min-height: 100vh;
     width: 100%;
     box-sizing: border-box;
     margin-top: 100px;   /* pushes page below navbar */
-}
-.logo {
-    color: var(--brand-orange);
-    font-size: 26px;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 10px;
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.02);
 }
 
 h2 {
     text-align: center;
     color: var(--text-dark);
+    font-weight: 800;
+    font-size: 2.2rem;
     margin-bottom: 40px;
+    position: relative;
 }
 
-/* TABLE */
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--brand-orange);
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
 
-table {
+/* PROVIDERS GRID */
+.providers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 28px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.provider-item-card {
+    background: #ffffff;
+    border: 1px solid #efe6df;
+    border-radius: 20px;
+    padding: 30px 24px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(249, 92, 25, 0.02);
+}
+
+.provider-item-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(249, 92, 25, 0.08);
+    border-color: var(--brand-orange);
+}
+
+.provider-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--bg-cream);
+    margin-bottom: 18px;
+    transition: border-color 0.3s;
+}
+
+.provider-item-card:hover .provider-avatar {
+    border-color: var(--brand-orange);
+}
+
+.provider-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0 0 8px 0;
+}
+
+.provider-rating {
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.provider-rating .star {
+    color: #f59e0b;
+}
+
+.provider-phone {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.provider-phone:hover {
+    color: var(--brand-orange);
+}
+
+.provider-actions {
     width: 100%;
-    border-collapse: collapse;
-    font-size: 16px;
+    margin-top: auto;
 }
 
-th {
+.btn-book-card {
+    display: block;
+    width: 100%;
     background: var(--brand-orange);
     color: white;
-    padding: 14px;
-    text-align: left;
-}
-
-td {
-    padding: 14px;
-    border-bottom: 1px solid #E2E8F0;
-}
-
-tr:hover {
-    background: #FAFAFA;
-}
-
-/* BOOK BUTTON */
-
-.btn-book {
-    background: var(--brand-orange);
-    color: white;
-    padding: 8px 16px;
+    padding: 12px;
     border: none;
-    border-radius: 6px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    text-align: center;
+    text-decoration: none;
 }
 
-.btn-book:hover {
+.btn-book-card:hover {
     background: #d84a12;
+    box-shadow: 0 4px 12px rgba(249, 92, 25, 0.2);
+    color: white;
+}
+
+/* RESPONSIVE PADDINGS */
+@media (max-width: 576px) {
+    .provider-card {
+        padding: 40px 20px;
+        margin-top: 80px;
+    }
+    h2 {
+        font-size: 1.8rem;
+    }
 }
 </style>
 
@@ -129,47 +212,37 @@ tr:hover {
 
 <h2>{{ service|title }} </h2>
 
-<table>
-
-<thead>
-<tr>
-<th>Photo</th>
-<th>Name</th>
-<th>Rating</th>
-<th>Phone Number</th>
-<th>Action</th>
-</tr>
-</thead>
-
-<tbody>
-
-{% for provider1 in providers %}
-<tr>
-<td>
-{% if provider1.plumber.photo.name %}
-<img src="{{ provider1.plumber.photo.url }}" alt="Photo" width="50" height="50" style="border-radius: 50%; object-fit: cover;">
-{% endif %}
-</td>
-<td>{{ provider1.plumber.Name }}</td>
-<td>
-{% if provider1.avg_rating %}
-<span style="color:#f59e0b;">&#9733;</span> {{ provider1.avg_rating|floatformat:1 }} / 5
-{% else %}
-<span class="text-muted">No ratings yet</span>
-{% endif %}
-</td>
-<td>{{ provider1.plumber.phone_number }}</td>
-<td>
-<a href="{% url 'single_provider' provider1.plumber.id service %}">
-<button class="btn-book">Book</button>
-</a>
-</td>
-</tr>
-{% endfor %}
-
-</tbody>
-
-</table>
+<div class="providers-grid">
+  {% for provider1 in providers %}
+  <div class="provider-item-card">
+    {% if provider1.plumber.photo.name %}
+      <img src="{{ provider1.plumber.photo.url }}" alt="{{ provider1.plumber.Name }}" class="provider-avatar">
+    {% else %}
+      <div class="provider-avatar-placeholder d-flex align-items-center justify-content-center" style="width: 100px; height: 100px; border-radius: 50%; background: var(--bg-cream); margin-bottom: 18px; color: var(--brand-orange); font-weight: bold; font-size: 1.8rem; border: 4px solid var(--bg-cream);">
+        {{ provider1.plumber.Name|slice:":1"|upper }}
+      </div>
+    {% endif %}
+    <h3 class="provider-name">{{ provider1.plumber.Name }}</h3>
+    <div class="provider-rating">
+      {% if provider1.avg_rating %}
+        <span class="star">&#9733;</span> <strong>{{ provider1.avg_rating|floatformat:1 }}</strong> <span class="text-muted">/ 5</span>
+      {% else %}
+        <span class="text-muted">No ratings yet</span>
+      {% endif %}
+    </div>
+    <a href="tel:{{ provider1.plumber.phone_number }}" class="provider-phone">
+      <i class="fas fa-phone-alt"></i> {{ provider1.plumber.phone_number }}
+    </a>
+    <div class="provider-actions">
+      <a href="{% url 'single_provider' provider1.plumber.id service %}" class="btn-book-card">Book Slot</a>
+    </div>
+  </div>
+  {% empty %}
+  <div class="col-12 text-center py-5" style="grid-column: 1 / -1;">
+    <p class="text-muted fs-5">No providers available for this service at the moment.</p>
+  </div>
+  {% endfor %}
+</div>
 
 </div>
 

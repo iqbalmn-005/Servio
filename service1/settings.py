@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-q&lb^=a2!_z!ev9nt94sq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [".vercel.app", "servio-orcin.vercel.app"]
+ALLOWED_HOSTS = [".vercel.app", "servio-orcin.vercel.app", "localhost", "127.0.0.1", "[::1]"]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://servio-orcin.vercel.app",

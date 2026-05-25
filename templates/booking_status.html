@@ -44,6 +44,59 @@
             text-align: center;
             color: #6b7280;
         }
+
+        @media (max-width: 576px) {
+            .page-wrap {
+                margin: 20px auto;
+            }
+            .panel {
+                padding: 16px;
+                border-radius: 12px;
+            }
+            .table-responsive {
+                border: none;
+            }
+            .table-responsive table, 
+            .table-responsive thead, 
+            .table-responsive tbody, 
+            .table-responsive th, 
+            .table-responsive td, 
+            .table-responsive tr { 
+                display: block; 
+            }
+            .table-responsive thead { 
+                display: none;
+            }
+            .table-responsive tr { 
+                border: 1px solid #f0e7e2; 
+                border-radius: 12px;
+                margin-bottom: 12px;
+                padding: 12px 16px;
+                background: #ffffff;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            }
+            .table-responsive td { 
+                border: none;
+                border-bottom: 1px dashed #f0e7e2; 
+                padding: 8px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .table-responsive td:last-child {
+                border-bottom: 0;
+                padding-bottom: 0;
+            }
+            .table-responsive td:first-child {
+                padding-top: 0;
+            }
+            .table-responsive td:before { 
+                content: attr(data-label);
+                font-weight: 600;
+                color: #6b7280;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -72,11 +125,11 @@
                     <tbody>
                         {% for booking in bookings %}
                         <tr>
-                            <td>{{ booking.provider.Name }}</td>
-                            <td>{{ booking.provider.service|title }}</td>
-                            <td>{{ booking.date }}</td>
-                            <td>{{ booking.time }}</td>
-                            <td>
+                            <td data-label="Provider">{{ booking.provider.Name }}</td>
+                            <td data-label="Service">{{ booking.provider.service|title }}</td>
+                            <td data-label="Date">{{ booking.date }}</td>
+                            <td data-label="Time">{{ booking.time }}</td>
+                            <td data-label="Status">
                                 {% with current=booking.status|lower %}
                                     {% if current == 'pending' %}
                                     <span class="badge bg-warning text-dark badge-status">Pending</span>

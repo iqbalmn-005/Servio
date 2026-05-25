@@ -41,17 +41,21 @@ def provider_registration(request):
         photo=request.FILES.get('photo')
         if models.Provider.objects.filter(email=email).exists():
            return render(request,'provider_registration.html',{'error':'Email already exists'})
-        user=models.Provider(Name=userame,phone_number=phone_number,email=email,service=service_choice,password=password,photo=photo)
-        user.save()
-        if service_choice=='plumbing':
-            user1=model1.Plumbing.objects.create(plumber=user)
-            user1.save()
-        elif service_choice=='wiring':
-            user1=model1.Wiring.objects.create(electrician=user)
-            user1.save()
-        elif service_choice=='ac':
-            user1=model1.AcMechanic.objects.create(ac_mechanic=user)
-            user1.save()
+        
+        from django.db import transaction
+        try:
+            with transaction.atomic():
+                user=models.Provider(Name=userame,phone_number=phone_number,email=email,service=service_choice,password=password,photo=photo)
+                user.save()
+                if service_choice=='plumbing':
+                    model1.Plumbing.objects.create(plumber=user)
+                elif service_choice=='wiring':
+                    model1.Wiring.objects.create(electrician=user)
+                elif service_choice=='ac':
+                    model1.AcMechanic.objects.create(ac_mechanic=user)
+        except Exception as e:
+            return render(request,'provider_registration.html',{'error': f'Registration failed: {str(e)}'})
+            
         messages.success(request, 'Registration successful! Please wait for admin verification before logging in.')
         return redirect('provider_login')
     return render(request,'provider_registration.html')
