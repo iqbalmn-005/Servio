@@ -9,3 +9,4 @@ gunicorn
 dj-database-url
 cloudinary
 django-cloudinary-storage
+python-dotenv
