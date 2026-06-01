@@ -160,14 +160,14 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 # Cloudinary configuration
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('servio'),
-    'API_KEY': os.getenv('349852626648894'),
-    'API_SECRET': os.getenv('JaANRlm8kbojw5APq_ybtWW5ft4')
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET')
 }
 
 cloudinary.config(
-    cloud_name=os.getenv("servio"),
-    api_key=os.getenv("349852626648894"),
-    api_secret=os.getenv("JaANRlm8kbojw5APq_ybtWW5ft4"),
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
     secure=True,
 )
