@@ -14,7 +14,7 @@ Follow these instructions to set up the project locally.
 ### 1. Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/iqbalmn-005/Servio.git
 cd service1
 ```
 
